@@ -1,5 +1,8 @@
+import * as path from "path";
+import * as fs from "fs";
+
+import { listResourceChanges, listResources } from "./utils";
 import { makeUnifiedConfig, ensureDir } from "@mtabt/utils";
-import { listResources } from "./utils";
 import { CliParams } from "@mtabt/utils";
 
 export type BuildFunction = (params: CliParams) => void;
@@ -23,11 +26,19 @@ export const build: BuildFunction = (params) => {
   ensureDir(config.src);
   ensureDir(config.out);
 
-  const resources = listResources(config.src);
+  const resources = listResources(config.src, config);
 
   for (const absoluteSourcePath of resources) {
-    const relativePath = "";
-  }
+    const changes = listResourceChanges(absoluteSourcePath, config);
 
-  console.log(config);
+    changes.forEach((abs) => {
+      const rel = path.relative(config.src, abs);
+      const outpath = path.resolve(config.out, rel);
+
+      ensureDir(path.dirname(outpath));
+      fs.copyFileSync(abs, outpath);
+    });
+
+    // Plugins make changes in place
+  }
 };

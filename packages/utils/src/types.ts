@@ -6,9 +6,10 @@ export interface CliParams {
   out: string;
 }
 
-export interface UnifiedConfig extends CliParams {
-  ignore: string[];
+export interface UnifiedConfig extends Omit<CliParams, "ignore"> {
+  ignore: RegExp[];
   platform: "win" | "linux";
   arch: "x86" | "x64";
   serverVersion: string;
+  original: CliParams;
 }

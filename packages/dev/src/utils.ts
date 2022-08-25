@@ -3,7 +3,8 @@ import * as cp from "child_process";
 import * as os from "os";
 import * as fs from "fs";
 
-import { CliParams, ensureDir, UnifiedConfig } from "@mtabt/utils";
+import { ensureDir, UnifiedConfig } from "@mtabt/utils";
+import { build } from "@mtabt/builder";
 
 import CheapWatch from "cheap-watch";
 import extractZip from "extract-zip";
@@ -118,13 +119,16 @@ export const watchResources = async (config: UnifiedConfig) => {
   const watch = new CheapWatch({ dir: config.src });
   await watch.init();
 
-  watch.on("+", ({ path: filename, stats, isNew }) => {
-    // On resource change we trigger a build
-    // After the build is complete we restart the resource
+  watch.on("+", () => {
+    build({
+      ...config.original,
+      out: path.join(
+        ".mtabt/debug",
+        config.platform,
+        "mods/deathmatch/resources"
+      ),
+    });
   });
 
-  watch.on("-", () => {
-    // On file remove we trigger a build
-    // After build is complete we restart the resource
-  });
+  watch.on("-", () => {});
 };

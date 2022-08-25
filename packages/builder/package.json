@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "main": "dist/index",
   "types": "dist/index",
+  "dependencies": {
+    "glob-to-regexp": "^0.4.1"
+  },
   "devDependencies": {
     "@mtabt/utils": "1.0.0",
+    "@types/glob-to-regexp": "^0.4.1",
     "typescript": "*"
   },
   "license": "MIT",
