@@ -8,4 +8,7 @@ export interface CliParams {
 
 export interface UnifiedConfig extends CliParams {
   ignore: string[];
+  platform: "win" | "linux";
+  arch: "x86" | "x64";
+  serverVersion: string;
 }
