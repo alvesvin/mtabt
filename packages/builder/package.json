@@ -1,0 +1,12 @@
+{
+  "name": "@mtabt/builder",
+  "version": "1.0.0",
+  "main": "dist/index",
+  "types": "dist/index",
+  "devDependencies": {
+    "@mtabt/utils": "1.0.0",
+    "typescript": "*"
+  },
+  "license": "MIT",
+  "private": false
+}

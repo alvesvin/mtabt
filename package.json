@@ -1,0 +1,21 @@
+{
+  "name": "mtabt-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build:clean": "bash -c 'rm -rf packages/*/dist'",
+    "build:ts": "tsc --build tsconfig.all.json",
+    "build": "yarn build:clean && yarn build:ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.13",
+    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "prettier": "^2.7.1"
+  }
+}

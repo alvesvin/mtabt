@@ -1,0 +1,16 @@
+{
+  "name": "@mtabt/utils",
+  "version": "1.0.0",
+  "main": "./dist/index",
+  "types": "./dist/index",
+  "files": [
+    "./dist/**/*.{js,ts,map}",
+    "./src",
+    "./package.json"
+  ],
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "license": "MIT",
+  "private": false
+}
