@@ -1,6 +1,5 @@
 import * as path from "path";
 import * as cp from "child_process";
-import * as os from "os";
 import * as fs from "fs";
 
 import { ensureDir, UnifiedConfig } from "@mtabt/utils";
@@ -119,7 +118,7 @@ export const watchResources = async (config: UnifiedConfig) => {
   const watch = new CheapWatch({ dir: config.src });
   await watch.init();
 
-  watch.on("+", () => {
+  const _build = () => {
     build({
       ...config.original,
       out: path.join(
@@ -128,7 +127,13 @@ export const watchResources = async (config: UnifiedConfig) => {
         "mods/deathmatch/resources"
       ),
     });
+  };
+
+  watch.on("+", () => {
+    _build();
   });
 
   watch.on("-", () => {});
+
+  _build();
 };
