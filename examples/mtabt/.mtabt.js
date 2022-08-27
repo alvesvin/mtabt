@@ -1,3 +1,4 @@
+/** @type {import("mtabt").ConfigFile} */
 const config = {
   devOptions: {
     plugins: [],
@@ -8,4 +9,4 @@ const config = {
   },
 };
 
-export default config;
+module.exports = config;

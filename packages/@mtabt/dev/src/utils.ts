@@ -124,6 +124,7 @@ export const watchResources = async (config: UnifiedConfig) => {
   const _build = () => {
     build({
       ...config,
+      verbose: false,
       buildManifest: ".mtabt/.cache/devManifest.json",
       out: path.resolve(
         config.cwd,

@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "dev:ts": "yarn build:ts --watch",
+    "mtabt": "node packages/mtabt/bin/index.cjs --cwd .dev",
     "build:clean": "bash -c 'rm -rf packages/*/dist'",
     "build:ts": "tsc --build tsconfig.all.json",
     "build": "yarn build:clean && yarn build:ts"

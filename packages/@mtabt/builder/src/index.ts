@@ -13,6 +13,10 @@ import { ensureDir } from "@mtabt/utils/fs";
 export type BuildFunction = (config: UnifiedConfig) => Promise<void>;
 
 export const build: BuildFunction = async (config) => {
+  if (config.verbose) {
+    console.time("Build");
+  }
+
   ensureDir(config.src);
   ensureDir(config.out);
 
@@ -22,7 +26,6 @@ export const build: BuildFunction = async (config) => {
     const changes = listResourceChanges(absoluteSourcePath, config);
 
     if (changes.length < 1) {
-      // console.warn(`Skipping ${path.basename(absoluteSourcePath)}`);
       continue;
     }
 
@@ -59,5 +62,9 @@ export const build: BuildFunction = async (config) => {
 
       runPlugin(ctx, args);
     }
+  }
+
+  if (config.verbose) {
+    console.timeEnd("Build");
   }
 };

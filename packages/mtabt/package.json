@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "type": "module",
   "bin": "./bin/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.js",
   "dependencies": {
-    "@mtabt/cli": "workspace:*"
+    "@mtabt/cli": "workspace:*",
+    "@mtabt/utils": "workspace:*"
   },
   "keywords": [
     "mtabt",

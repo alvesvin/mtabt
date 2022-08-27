@@ -10,18 +10,20 @@ const prog = sade("mtabt");
 
 prog
   .version("1.0.0")
-  .option("--config, -c", "Configuration file", ".mtabt.ts")
+  .option("--config, -c", "Configuration file", ".mtabt.js")
   .option("--ignore", "Blob pattern to ignore")
   .option("--cwd", "Current working directory", ".")
   .option("--src", "Resources source directory", "resources")
   .option("--out", "Output directory", ".mtabt/release");
 
-prog.command("build").action((args) => {
-  build(makeUnifiedConfig(args));
+prog.command("build").action(async (args) => {
+  const config = await makeUnifiedConfig(args, "build");
+  build(config);
 });
 
-prog.command("dev").action((args) => {
-  dev(makeUnifiedConfig(args));
+prog.command("dev").action(async (args) => {
+  const config = await makeUnifiedConfig(args, "dev");
+  dev(config);
 });
 
 prog.parse(process.argv);

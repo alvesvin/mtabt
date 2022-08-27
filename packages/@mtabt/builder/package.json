@@ -5,6 +5,7 @@
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
+    "chalk": "^5.0.1",
     "glob-to-regexp": "^0.4.1"
   },
   "devDependencies": {
