@@ -2,19 +2,16 @@ import * as path from "path";
 import * as fs from "fs";
 
 import { ensureServer, openServer, watchLogs, watchResources } from "./utils";
-import { makeUnifiedConfig } from "@mtabt/utils";
-import { CliParams } from "@mtabt/utils";
+import { UnifiedConfig } from "@mtabt/utils";
 
-export type DevFunction = (params: CliParams) => void;
+export type DevFunction = (config: UnifiedConfig) => void;
 
-export const dev: DevFunction = async (params) => {
-  const config = makeUnifiedConfig(params);
-
+export const dev: DevFunction = async (config) => {
   await ensureServer(config);
   // ensureDefaultResources
 
   try {
-    fs.unlinkSync(path.resolve(config.cwd, ".mtabt/manifest.json"));
+    fs.unlinkSync(path.resolve(config.cwd, ".mtabt/.cache/devManifest.json"));
   } catch {}
 
   // Watch for log files change

@@ -5,6 +5,5 @@
     "outDir": "dist",
     "tsBuildInfoFile": "dist/.tsbuildinfo.json"
   },
-  "references": [{ "path": "../plugin" }],
   "include": ["src"]
 }

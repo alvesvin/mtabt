@@ -2,27 +2,16 @@ import * as path from "path";
 import * as fs from "fs";
 
 import { listResourceChanges, listResources } from "./utils";
-import { makeUnifiedConfig, ensureDir } from "@mtabt/utils";
-import { CliParams } from "@mtabt/utils";
+import {
+  ensureDir,
+  RunPlugin,
+  PluginContext,
+  UnifiedConfig,
+} from "@mtabt/utils";
 
-export type BuildFunction = (params: CliParams) => void;
+export type BuildFunction = (config: UnifiedConfig) => void;
 
-/**
- * Building is:
- *
- * 1. Parse the config
- *  1.1 Parse the config file
- *  1.2 Parse CLI arguments
- * 2. Discover resources
- * 3. Loop
- *  3.1 Should it be built?
- *  3.2 Yes? Clean old output. No? Skip.
- *  3.3 Run plugins against resource
- */
-
-export const build: BuildFunction = (params) => {
-  const config = makeUnifiedConfig(params);
-
+export const build: BuildFunction = (config) => {
   ensureDir(config.src);
   ensureDir(config.out);
 
@@ -30,6 +19,11 @@ export const build: BuildFunction = (params) => {
 
   for (const absoluteSourcePath of resources) {
     const changes = listResourceChanges(absoluteSourcePath, config);
+
+    if (changes.length < 1) {
+      // console.warn(`Skipping ${path.basename(absoluteSourcePath)}`);
+      continue;
+    }
 
     changes.forEach((abs) => {
       const rel = path.relative(config.src, abs);
@@ -40,5 +34,30 @@ export const build: BuildFunction = (params) => {
     });
 
     // Plugins make changes in place
+
+    config.plugins.forEach((plugin) => {
+      const [module] = Array.isArray(plugin) ? plugin : [plugin];
+      require.resolve(module);
+    });
+
+    config.plugins.forEach((plugin) => {
+      const [module, args] = Array.isArray(plugin) ? plugin : [plugin];
+      const _import = require(module);
+      const runPlugin = _import.default as RunPlugin;
+
+      const ctx: PluginContext = {
+        cwd: path.resolve(
+          config.out,
+          path.relative(config.src, absoluteSourcePath)
+        ),
+        changes: changes.map((abs) => {
+          const rel = path.relative(config.src, abs);
+          const outpath = path.resolve(config.out, rel);
+          return outpath;
+        }),
+      };
+
+      runPlugin(ctx, args);
+    });
   }
 };

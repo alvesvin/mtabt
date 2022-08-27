@@ -47,6 +47,8 @@ export const makeUnifiedConfig = (cliParams: CliParams): UnifiedConfig => {
     arch,
     serverVersion: "1.5.9",
     defaultResources: {},
+    plugins: ["mtabt-plugin-minify", "mtabt-plugin-archive"],
+    buildManifest: ".mtabt/.cache/buildManifest.json",
     _raw: cliParams,
   };
 };

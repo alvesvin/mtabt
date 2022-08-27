@@ -6,6 +6,9 @@
     { "path": "./packages/cli" },
     { "path": "./packages/builder" },
     { "path": "./packages/dev" },
-    { "path": "./packages/utils" }
+    { "path": "./packages/utils" },
+    { "path": "./packages/plugin" },
+    { "path": "./packages/plugins/archive" },
+    { "path": "./packages/plugins/minify" }
   ]
 }

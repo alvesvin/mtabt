@@ -107,6 +107,8 @@ export const watchLogs = async (config: UnifiedConfig) => {
     "mods/deathmatch/logs"
   );
 
+  ensureDir(logsPath);
+
   const watch = new CheapWatch({ dir: logsPath });
 
   await watch.init();
@@ -120,8 +122,10 @@ export const watchResources = async (config: UnifiedConfig) => {
 
   const _build = () => {
     build({
-      ...config._raw,
-      out: path.join(
+      ...config,
+      buildManifest: ".mtabt/.cache/devManifest.json",
+      out: path.resolve(
+        config.cwd,
         ".mtabt/debug",
         config.platform,
         "mods/deathmatch/resources"

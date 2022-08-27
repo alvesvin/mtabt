@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { makeUnifiedConfig } from "@mtabt/utils";
 import { build } from "@mtabt/builder";
 import { dev } from "@mtabt/dev";
 
@@ -15,8 +16,12 @@ prog
   .option("--src", "Resources source directory", "resources")
   .option("--out", "Output directory", ".mtabt/release");
 
-prog.command("build").action(build);
+prog.command("build").action((args) => {
+  build(makeUnifiedConfig(args));
+});
 
-prog.command("dev").action(dev);
+prog.command("dev").action((args) => {
+  dev(makeUnifiedConfig(args));
+});
 
 prog.parse(process.argv);

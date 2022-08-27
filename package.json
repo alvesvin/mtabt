@@ -2,7 +2,8 @@
   "name": "mtabt-monorepo",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/plugins/*"
   ],
   "scripts": {
     "build:clean": "bash -c 'rm -rf packages/*/dist'",
@@ -16,6 +17,8 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "mtabt-plugin-archive": "*",
+    "mtabt-plugin-minify": "*",
     "prettier": "^2.7.1"
   }
 }

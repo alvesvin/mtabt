@@ -46,7 +46,7 @@ export const listResourceFiles = (root: string, config: UnifiedConfig) => {
 
 const getBuildManifest = (config: UnifiedConfig) => {
   try {
-    const manifestPath = path.resolve(config.cwd, ".mtabt/manifest.json");
+    const manifestPath = path.resolve(config.cwd, config.buildManifest);
 
     if (!fs.existsSync(manifestPath)) {
       fs.writeFileSync(manifestPath, "");
@@ -63,7 +63,7 @@ const updateBuildManifest = (
   config: UnifiedConfig
 ) => {
   try {
-    const manifestPath = path.resolve(config.cwd, ".mtabt/manifest.json");
+    const manifestPath = path.resolve(config.cwd, config.buildManifest);
     const manifest = getBuildManifest(config);
 
     fs.writeFileSync(manifestPath, JSON.stringify({ ...manifest, ...obj }));
