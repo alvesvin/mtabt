@@ -1,0 +1,1 @@
+outputDebugString("MTABT Rocks!")

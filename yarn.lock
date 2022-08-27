@@ -81,6 +81,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@mtabt/example@workspace:examples/mtabt":
+  version: 0.0.0-use.local
+  resolution: "@mtabt/example@workspace:examples/mtabt"
+  dependencies:
+    mtabt: "workspace:*"
+  languageName: unknown
+  linkType: soft
+
 "@mtabt/plugin@workspace:*, @mtabt/plugin@workspace:packages/@mtabt/plugin":
   version: 0.0.0-use.local
   resolution: "@mtabt/plugin@workspace:packages/@mtabt/plugin"
@@ -1341,7 +1349,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"mtabt@workspace:packages/mtabt":
+"mtabt@workspace:*, mtabt@workspace:packages/mtabt":
   version: 0.0.0-use.local
   resolution: "mtabt@workspace:packages/mtabt"
   dependencies:

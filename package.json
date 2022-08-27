@@ -4,7 +4,8 @@
   "workspaces": [
     "packages/*",
     "packages/plugins/*",
-    "packages/@mtabt/*"
+    "packages/@mtabt/*",
+    "examples/*"
   ],
   "scripts": {
     "dev:ts": "yarn build:ts --watch",

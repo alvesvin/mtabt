@@ -1,0 +1,11 @@
+{
+  "name": "@mtabt/example",
+  "scripts": {
+    "dev": "mtabt dev",
+    "build": "mtabt build"
+  },
+  "devDependencies": {
+    "mtabt": "workspace:*"
+  },
+  "private": true
+}
