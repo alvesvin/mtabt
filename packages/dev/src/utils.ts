@@ -120,7 +120,7 @@ export const watchResources = async (config: UnifiedConfig) => {
 
   const _build = () => {
     build({
-      ...config.original,
+      ...config._raw,
       out: path.join(
         ".mtabt/debug",
         config.platform,

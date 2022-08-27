@@ -46,6 +46,7 @@ export const makeUnifiedConfig = (cliParams: CliParams): UnifiedConfig => {
     platform,
     arch,
     serverVersion: "1.5.9",
-    original: cliParams,
+    defaultResources: {},
+    _raw: cliParams,
   };
 };

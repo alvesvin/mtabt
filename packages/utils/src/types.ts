@@ -6,10 +6,18 @@ export interface CliParams {
   out: string;
 }
 
-export interface UnifiedConfig extends Omit<CliParams, "ignore"> {
+export interface DevOptions {
+  defaultResources: {
+    admin?: true;
+  };
+}
+
+export type ConfigFile = Partial<CliParams> & Partial<DevOptions>;
+
+export interface UnifiedConfig extends Omit<CliParams, "ignore">, DevOptions {
   ignore: RegExp[];
   platform: "win" | "linux";
   arch: "x86" | "x64";
   serverVersion: string;
-  original: CliParams;
+  _raw: CliParams;
 }
