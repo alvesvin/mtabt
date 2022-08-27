@@ -1,0 +1,31 @@
+{
+  "name": "@mtabt/dev",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist/**/*.{js,ts,map}",
+    "./src",
+    "./package.json"
+  ],
+  "dependencies": {
+    "@mtabt/builder": "workspace:*",
+    "@mtabt/utils": "workspace:*",
+    "cheap-watch": "^1.0.4",
+    "extract-zip": "^2.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "author": "Vinicius Alves",
+  "license": "MIT",
+  "homepage": "https://github.com/alvesvin/mtabt#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alvesvin/mtabt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alvesvin/mtabt/issues"
+  }
+}

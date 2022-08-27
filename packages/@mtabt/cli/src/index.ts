@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import { makeUnifiedConfig } from "@mtabt/utils";
 import { build } from "@mtabt/builder";
 import { dev } from "@mtabt/dev";

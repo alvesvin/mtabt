@@ -1,0 +1,25 @@
+{
+  "name": "mtabt",
+  "version": "0.0.1",
+  "type": "module",
+  "bin": "./bin/index.cjs",
+  "dependencies": {
+    "@mtabt/cli": "workspace:*"
+  },
+  "keywords": [
+    "mtabt",
+    "mta",
+    "multi theft auto",
+    "gta"
+  ],
+  "author": "Vinicius Alves",
+  "license": "MIT",
+  "homepage": "https://github.com/alvesvin/mtabt#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvesvin/mtabt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alvesvin/mtabt/issues"
+  }
+}

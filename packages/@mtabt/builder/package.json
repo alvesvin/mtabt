@@ -1,16 +1,16 @@
 {
   "name": "@mtabt/builder",
-  "version": "1.0.0",
-  "main": "dist/index",
-  "types": "dist/index",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "dependencies": {
     "glob-to-regexp": "^0.4.1"
   },
   "devDependencies": {
-    "@mtabt/utils": "1.0.0",
+    "@mtabt/utils": "workspace:*",
     "@types/glob-to-regexp": "^0.4.1",
     "typescript": "*"
   },
-  "license": "MIT",
-  "private": false
+  "license": "MIT"
 }

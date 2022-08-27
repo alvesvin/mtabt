@@ -13,8 +13,7 @@
     "noUncheckedIndexedAccess": true,
     "noErrorTruncation": true,
     "resolveJsonModule": true,
-    "target": "es5",
-    "module": "commonjs",
+    "target": "ES2020",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   }
