@@ -1,7 +1,7 @@
 import * as path from "path";
 import * as fs from "fs";
 
-import { UnifiedConfig } from "@mtabt/utils";
+import type { UnifiedConfig } from "@mtabt/utils/types";
 
 import crypto from "crypto";
 

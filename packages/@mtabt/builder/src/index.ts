@@ -1,17 +1,18 @@
 import * as path from "path";
 import * as fs from "fs";
 
-import { listResourceChanges, listResources } from "./utils";
-import {
-  ensureDir,
+import type {
   RunPlugin,
   PluginContext,
   UnifiedConfig,
-} from "@mtabt/utils";
+} from "@mtabt/utils/types";
 
-export type BuildFunction = (config: UnifiedConfig) => void;
+import { listResourceChanges, listResources } from "./utils.js";
+import { ensureDir } from "@mtabt/utils/fs";
 
-export const build: BuildFunction = (config) => {
+export type BuildFunction = (config: UnifiedConfig) => Promise<void>;
+
+export const build: BuildFunction = async (config) => {
   ensureDir(config.src);
   ensureDir(config.out);
 
@@ -35,15 +36,14 @@ export const build: BuildFunction = (config) => {
 
     // Plugins make changes in place
 
-    config.plugins.forEach((plugin) => {
+    for (const plugin of config.plugins) {
       const [module] = Array.isArray(plugin) ? plugin : [plugin];
-      require.resolve(module);
-    });
+      await import(module);
+    }
 
-    config.plugins.forEach((plugin) => {
+    for (const plugin of config.plugins) {
       const [module, args] = Array.isArray(plugin) ? plugin : [plugin];
-      const _import = require(module);
-      const runPlugin = _import.default as RunPlugin;
+      const runPlugin = (await import(module)).default as RunPlugin;
 
       const ctx: PluginContext = {
         cwd: path.resolve(
@@ -58,6 +58,6 @@ export const build: BuildFunction = (config) => {
       };
 
       runPlugin(ctx, args);
-    });
+    }
   }
 };

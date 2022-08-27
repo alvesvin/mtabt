@@ -2,8 +2,8 @@ import * as path from "path";
 import * as fs from "fs";
 import * as os from "os";
 
-import type { CliParams, UnifiedConfig } from "./types";
-import { ensureArray } from "./array";
+import type { CliParams, UnifiedConfig } from "./types.js";
+import { ensureArray } from "./array.js";
 
 import globToRegexp from "glob-to-regexp";
 

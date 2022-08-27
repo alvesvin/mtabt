@@ -2,7 +2,7 @@
   "name": "@mtabt/builder",
   "version": "0.0.1",
   "type": "module",
-  "main": "./dist/index.js",
+  "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
     "glob-to-regexp": "^0.4.1"
@@ -10,7 +10,7 @@
   "devDependencies": {
     "@mtabt/utils": "workspace:*",
     "@types/glob-to-regexp": "^0.4.1",
-    "typescript": "*"
+    "typescript": "^4.7.4"
   },
   "license": "MIT"
 }

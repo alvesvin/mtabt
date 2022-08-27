@@ -54,7 +54,7 @@ __metadata:
     "@mtabt/utils": "workspace:*"
     "@types/glob-to-regexp": ^0.4.1
     glob-to-regexp: ^0.4.1
-    typescript: "*"
+    typescript: ^4.7.4
   languageName: unknown
   linkType: soft
 
@@ -1752,7 +1752,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:*, typescript@npm:^4.7.4":
+"typescript@npm:^4.7.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
   bin:
@@ -1772,7 +1772,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@*#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
   version: 4.7.4
   resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=a1c5e5"
   bin:

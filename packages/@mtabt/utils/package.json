@@ -2,14 +2,10 @@
   "name": "@mtabt/utils",
   "version": "0.0.1",
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "./dist/**/*.{js,ts,map}",
-    "./src",
-    "./package.json"
-  ],
   "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
     "./array": {
       "import": "./dist/array.js"
     },
@@ -18,8 +14,33 @@
     },
     "./fs": {
       "import": "./dist/fs.js"
+    },
+    "./types": {
+      "import": "./dist/types.js"
     }
   },
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "array": [
+        "./dist/array"
+      ],
+      "etc": [
+        "./dist/etc"
+      ],
+      "fs": [
+        "./dist/fs"
+      ],
+      "types": [
+        "./dist/types"
+      ]
+    }
+  },
+  "files": [
+    "./dist/**/*.{js,ts,map}",
+    "./src",
+    "./package.json"
+  ],
   "devDependencies": {
     "@mtabt/plugin": "workspace:*",
     "typescript": "^4.7.4"

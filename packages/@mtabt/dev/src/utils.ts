@@ -2,7 +2,8 @@ import * as path from "path";
 import * as cp from "child_process";
 import * as fs from "fs";
 
-import { ensureDir, UnifiedConfig } from "@mtabt/utils";
+import type { UnifiedConfig } from "@mtabt/utils/types";
+import { ensureDir } from "@mtabt/utils/fs";
 import { build } from "@mtabt/builder";
 
 import CheapWatch from "cheap-watch";
@@ -113,7 +114,7 @@ export const watchLogs = async (config: UnifiedConfig) => {
 
   await watch.init();
 
-  watch.on("+", ({ path: filename }) => {});
+  watch.on("+", ({ path: filename }) => undefined);
 };
 
 export const watchResources = async (config: UnifiedConfig) => {
@@ -137,7 +138,7 @@ export const watchResources = async (config: UnifiedConfig) => {
     _build();
   });
 
-  watch.on("-", () => {});
+  watch.on("-", () => undefined);
 
   _build();
 };

@@ -4,9 +4,6 @@
   "type": "module",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "scripts": {
-    "dev": "node dist/index.js"
-  },
   "dependencies": {
     "@mtabt/builder": "workspace:*",
     "@mtabt/dev": "workspace:*",
