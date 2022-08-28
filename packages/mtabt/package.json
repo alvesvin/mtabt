@@ -1,6 +1,6 @@
 {
   "name": "mtabt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "bin": "./bin/index.cjs",
   "types": "./dist/index.d.ts",
