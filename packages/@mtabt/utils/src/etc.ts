@@ -38,7 +38,7 @@ export const makeUnifiedConfig = async (
     return lines;
   })();
 
-  const configPath = path.resolve(cliParams.cwd, cliParams.config);
+  const configPath = "file://" + path.resolve(cliParams.cwd, cliParams.config);
   const configFile = (await import(configPath)).default as ConfigFile;
 
   const plugins =
