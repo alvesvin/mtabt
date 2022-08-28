@@ -12,7 +12,10 @@
     "mtabt": "node packages/mtabt/bin/index.cjs --cwd .dev",
     "build:clean": "bash -c 'rm -rf packages/*/dist'",
     "build:ts": "tsc --build tsconfig.all.json",
-    "build": "yarn build:clean && yarn build:ts"
+    "build": "yarn build:clean && yarn build:ts",
+    "release:prerelease": "yarn build && yarn workspaces foreach --verbose --topological-dev --no-private exec npm version prerelease --preid=dev && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --tag=dev",
+    "release:patch": "yarn build && yarn workspaces foreach --verbose --topological-dev --no-private exec npm version patch && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish",
+    "release:minor": "yarn build && yarn workspaces foreach --verbose --topological-dev --no-private exec npm version minor && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish"
   },
   "devDependencies": {
     "@types/node": "^18.7.13",
