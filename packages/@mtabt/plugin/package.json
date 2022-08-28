@@ -1,6 +1,6 @@
 {
   "name": "@mtabt/plugin",
-  "version": "0.0.1-0",
+  "version": "0.0.1",
   "type": "module",
   "types": "./dist/index.d.ts",
   "files": [
@@ -20,6 +20,5 @@
   },
   "bugs": {
     "url": "https://github.com/alvesvin/mtabt/issues"
-  },
-  "stableVersion": "0.0.0"
+  }
 }
