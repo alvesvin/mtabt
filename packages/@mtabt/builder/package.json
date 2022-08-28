@@ -1,6 +1,6 @@
 {
   "name": "@mtabt/builder",
-  "version": "0.0.1-0",
+  "version": "0.0.1",
   "type": "module",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -13,6 +13,5 @@
     "@types/glob-to-regexp": "^0.4.1",
     "typescript": "^4.7.4"
   },
-  "license": "MIT",
-  "stableVersion": "0.0.0"
+  "license": "MIT"
 }
