@@ -1,6 +1,6 @@
 {
   "name": "@mtabt/utils",
-  "version": "0.0.0",
+  "version": "0.0.1-0",
   "type": "module",
   "exports": {
     ".": {
@@ -54,5 +54,6 @@
   },
   "bugs": {
     "url": "https://github.com/alvesvin/mtabt/issues"
-  }
+  },
+  "stableVersion": "0.0.0"
 }

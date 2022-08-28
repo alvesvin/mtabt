@@ -1,6 +1,6 @@
 {
   "name": "mtabt",
-  "version": "0.0.0",
+  "version": "0.0.1-0",
   "type": "module",
   "bin": "./bin/index.cjs",
   "types": "./dist/index.d.ts",
@@ -24,5 +24,6 @@
   },
   "bugs": {
     "url": "https://github.com/alvesvin/mtabt/issues"
-  }
+  },
+  "stableVersion": "0.0.0"
 }
