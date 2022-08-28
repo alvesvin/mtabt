@@ -94,9 +94,10 @@ export const openServer = (config: UnifiedConfig) => {
   );
 
   const proc = cp.spawn(startPath, {
-    stdio: ["inherit", "ignore", "ignore"],
+    stdio: ["pipe", "ignore", "ignore"],
   });
 
+  process.stdin.pipe(proc.stdin);
   proc.on("exit", process.exit);
 };
 
