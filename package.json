@@ -12,9 +12,14 @@
     "mtabt": "node packages/mtabt/bin/index.cjs --cwd .dev",
     "build:clean": "bash -c 'rm -rf packages/*/dist'",
     "build:ts": "tsc --build tsconfig.all.json",
-    "build": "yarn build:clean && yarn build:ts"
+    "build": "yarn build:clean && yarn build:ts",
+    "release:prerelease": "yarn build && yarn workspaces foreach --verbose --topological-dev --no-private exec yarn version prerelease && yarn workspaces foreach --verbose --topological-dev --no-private npm publish --tolerate-republish --tag=dev",
+    "release:patch": "yarn build && yarn workspaces foreach --verbose --topological-dev --no-private exec yarn version patch && yarn workspaces foreach --verbose --topological-dev --no-private npm publish --tolerate-republish",
+    "release:minor": "yarn build && yarn workspaces foreach --verbose --topological-dev --no-private exec yarn version minor && yarn workspaces foreach --verbose --topological-dev --no-private npm publish --tolerate-republish"
   },
   "devDependencies": {
+    "@mtabt/plugin-archive": "workspace:*",
+    "@mtabt/plugin-minify": "workspace:*",
     "@types/node": "^18.7.13",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
@@ -22,8 +27,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "mtabt-plugin-archive": "workspace:*",
-    "mtabt-plugin-minify": "workspace:*",
     "prettier": "^2.7.1",
     "typescript": "^4.8.2"
   },

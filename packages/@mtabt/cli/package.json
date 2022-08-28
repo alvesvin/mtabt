@@ -1,6 +1,6 @@
 {
   "name": "@mtabt/cli",
-  "version": "0.0.1",
+  "version": "0.0.1-0",
   "type": "module",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -12,5 +12,6 @@
   "devDependencies": {
     "typescript": "^4.7.4"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "stableVersion": "0.0.0"
 }
