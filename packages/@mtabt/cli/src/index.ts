@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import * as path from "path";
+
 import { makeUnifiedConfig } from "@mtabt/utils";
 import { build } from "@mtabt/builder";
 import { dev } from "@mtabt/dev";
@@ -23,7 +25,17 @@ prog.command("build").action(async (args) => {
 
 prog.command("dev").action(async (args) => {
   const config = await makeUnifiedConfig(args, "dev");
-  dev(config);
+  dev({
+    ...config,
+    verbose: false,
+    buildManifest: ".mtabt/.cache/devManifest.json",
+    out: path.resolve(
+      config.cwd,
+      ".mtabt/debug",
+      config.platform,
+      "mods/deathmatch/resources"
+    ),
+  });
 });
 
 prog.parse(process.argv);
