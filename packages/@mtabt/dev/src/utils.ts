@@ -3,7 +3,8 @@ import * as cp from "child_process";
 import * as fs from "fs";
 
 import type { UnifiedConfig } from "@mtabt/utils/types";
-import { ensureDir } from "@mtabt/utils/fs";
+import type { ChildProcess } from "child_process";
+import { ensureDir, rimraf } from "@mtabt/utils/fs";
 import { build } from "@mtabt/builder";
 
 import CheapWatch from "cheap-watch";
@@ -86,61 +87,91 @@ export const ensureServer = async (config: UnifiedConfig) => {
 };
 
 export const openServer = (config: UnifiedConfig) => {
-  const startPath = path.resolve(
-    config.cwd,
-    ".mtabt/debug",
-    config.platform,
-    "start"
-  );
+  const cwd = path.resolve(config.cwd, ".mtabt/debug", config.platform);
 
-  const proc = cp.spawn(startPath, {
+  const proc = cp.spawn("./start", {
+    cwd,
     stdio: ["pipe", "ignore", "ignore"],
   });
 
-  process.stdin.pipe(proc.stdin);
   proc.on("exit", process.exit);
+
+  return proc;
+};
+
+export const handleStdin = (proc: ChildProcess) => {
+  process.stdin.on("data", (data) => {
+    const str = data.toString().replace(/\n|\r/gm, "");
+
+    if (["cls", "clear", "clean"].includes(str)) {
+      process.stdout.cursorTo(0, 0);
+      process.stdout.clearScreenDown();
+
+      return;
+    }
+
+    proc.stdin?.write(data);
+  });
 };
 
 export const watchLogs = async (config: UnifiedConfig) => {
-  const logsPath = path.resolve(
+  const logsDir = path.resolve(
     config.cwd,
     ".mtabt/debug",
     config.platform,
     "mods/deathmatch/logs"
   );
 
-  ensureDir(logsPath);
+  ensureDir(logsDir);
 
-  const watch = new CheapWatch({ dir: logsPath });
+  const watch = new CheapWatch({
+    dir: logsDir,
+    filter: ({ path: p }: { path: string }) =>
+      !config.ignore.some((t) => t.test(p)),
+  });
 
   await watch.init();
 
   watch.on("+", ({ path: filename }) => undefined);
 };
 
-export const watchResources = async (config: UnifiedConfig) => {
-  const watch = new CheapWatch({ dir: config.src });
-  await watch.init();
-
-  const _build = () => {
-    build({
-      ...config,
-      verbose: false,
-      buildManifest: ".mtabt/.cache/devManifest.json",
-      out: path.resolve(
-        config.cwd,
-        ".mtabt/debug",
-        config.platform,
-        "mods/deathmatch/resources"
-      ),
-    });
-  };
-
-  watch.on("+", () => {
-    _build();
+export const watchResources = async (
+  proc: ChildProcess,
+  config: UnifiedConfig
+) => {
+  const watch = new CheapWatch({
+    dir: config.src,
+    debounce: 250,
+    filter: ({ path: p }: { path: string }) =>
+      !config.ignore.some((t) => t.test(p)),
   });
 
-  watch.on("-", () => undefined);
+  await watch.init();
+  await build(config);
 
-  _build();
+  const refreshall = () => {
+    proc.stdin?.write("refreshall\n");
+  };
+
+  watch.on(
+    "+",
+    async ({ stats }: { path: string; stats: fs.Stats; isNew: boolean }) => {
+      await build(config);
+
+      if (!stats.isDirectory()) return;
+
+      refreshall();
+    }
+  );
+
+  watch.on(
+    "-",
+    ({ stats, path: filename }: { stats: fs.Stats; path: string }) => {
+      if (!stats.isDirectory()) return;
+
+      rimraf(path.resolve(config.out, filename));
+
+      refreshall();
+    }
+  );
 };
