@@ -11,6 +11,7 @@ import CheapWatch from "cheap-watch";
 import extractZip from "extract-zip";
 import crypto from "crypto";
 import https from "https";
+import chalk from "chalk";
 
 const cacheServer = async (config: UnifiedConfig) => {
   // https://mtabt.s3.us-east-2.amazonaws.com/1.5.9-linux-x64.zip
@@ -126,13 +127,44 @@ export const watchLogs = async (config: UnifiedConfig) => {
 
   const watch = new CheapWatch({
     dir: logsDir,
+    debounce: 50,
     filter: ({ path: p }: { path: string }) =>
       !config.ignore.some((t) => t.test(p)),
   });
 
   await watch.init();
 
-  watch.on("+", ({ path: filename }) => undefined);
+  fs.readdirSync(logsDir).forEach((logFile) => {
+    const logPath = path.resolve(logsDir, logFile);
+
+    // Clearing log files
+    fs.writeFileSync(logPath, "");
+
+    // Needed because MTA doesn't flush log files
+    fs.readFile(logPath, () => undefined);
+  });
+
+  watch.on("+", ({ path: filename }) => {
+    const logPath = path.resolve(logsDir, filename);
+    const prefix = chalk.grey(filename);
+    const message = fs.readFileSync(logPath).toString();
+
+    message
+      .split("\n")
+      .filter((m) => Boolean(m.length) && !m.startsWith("="))
+      .map((m) =>
+        m
+          .replace(/\[.+\] /g, "")
+          .replace(/^ERROR:.+$/, (a) => chalk.red.bold(a))
+          .replace(/^WARNING:.+$/, (a) => chalk.yellow.bold(a))
+          .replace(/^INFO:.+$/, (a) => chalk.white.bold(a))
+      )
+      .forEach((m) => {
+        process.stdout.write(`${prefix}: ${m}\n`);
+      });
+
+    fs.writeFileSync(logPath, "");
+  });
 };
 
 export const watchResources = async (
