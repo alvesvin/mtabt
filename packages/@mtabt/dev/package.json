@@ -12,6 +12,7 @@
   "dependencies": {
     "@mtabt/builder": "workspace:*",
     "@mtabt/utils": "workspace:*",
+    "chalk": "^5.0.1",
     "cheap-watch": "^1.0.4",
     "extract-zip": "^2.0.1"
   },
