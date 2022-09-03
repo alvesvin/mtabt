@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "luamin": "^1.0.4"
+    "luamin": "^1.0.4",
+    "pretty-bytes": "^6.0.0"
   },
   "devDependencies": {
     "@mtabt/plugin": "workspace:*",
