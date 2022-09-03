@@ -6,11 +6,13 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "chalk": "^5.0.1",
-    "glob-to-regexp": "^0.4.1"
+    "glob-to-regexp": "^0.4.1",
+    "signale": "^1.4.0"
   },
   "devDependencies": {
     "@mtabt/utils": "workspace:*",
     "@types/glob-to-regexp": "^0.4.1",
+    "@types/signale": "^1.4.4",
     "typescript": "^4.7.4"
   },
   "license": "MIT"
