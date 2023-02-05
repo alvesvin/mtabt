@@ -1,9 +1,12 @@
 {
   "name": "@mtabt/plugin-minify",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "luamin": "^1.0.4",
     "pretty-bytes": "^6.0.0"

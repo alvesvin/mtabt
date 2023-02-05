@@ -1,9 +1,12 @@
 {
   "name": "@mtabt/plugin-archive",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "archiver": "^5.3.1",
     "rimraf": "^3.0.2"

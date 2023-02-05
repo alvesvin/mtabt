@@ -1,6 +1,6 @@
 {
   "name": "@mtabt/plugin",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "types": "./dist/index.d.ts",
   "files": [
@@ -8,6 +8,9 @@
     "./src",
     "./package.json"
   ],
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "typescript": "^4.7.4"
   },

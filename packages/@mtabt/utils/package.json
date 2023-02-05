@@ -1,6 +1,6 @@
 {
   "name": "@mtabt/utils",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "exports": {
     ".": {
@@ -41,8 +41,15 @@
     "./src",
     "./package.json"
   ],
-  "devDependencies": {
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
     "@mtabt/plugin": "workspace:*",
+    "glob-to-regexp": "^0.4.1"
+  },
+  "devDependencies": {
+    "@types/glob-to-regexp": "^0.4.1",
     "typescript": "^4.7.4"
   },
   "author": "Vinicius Alves",

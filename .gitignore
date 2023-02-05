@@ -11,8 +11,6 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
-# yarn 2
-/.yarn/*
-!/.yarn/releases
-!/.yarn/plugins
-!/.yarn/sdks
+
+# Turborepo
+.turbo

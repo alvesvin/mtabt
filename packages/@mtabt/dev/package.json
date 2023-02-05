@@ -1,6 +1,6 @@
 {
   "name": "@mtabt/dev",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -9,6 +9,9 @@
     "./src",
     "./package.json"
   ],
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "@mtabt/builder": "workspace:*",
     "@mtabt/utils": "workspace:*",
