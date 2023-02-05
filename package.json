@@ -5,7 +5,7 @@
     "build": "turbo run build --filter='./packages/**'",
     "dev": "pnpm build && pnpm mtabt",
     "mtabt": "node packages/mtabt/bin/index.cjs --cwd .dev",
-    "publish-packages": "turbo run build lint test --filter='./packages/**' && changeset version && changeset publish"
+    "release": "turbo run build lint test --filter='./packages/**' && changeset version && changeset publish"
   },
   "devDependencies": {
     "@mtabt/plugin-archive": "workspace:*",
